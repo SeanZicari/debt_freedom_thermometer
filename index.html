@@ -1,134 +1,148 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<script type="application/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-	<style type="text/css">
-	#content {
-	    width:700px;
-	    margin:30px auto;
-	}
-	.thermometer {
-	    float: left;
-	    margin:0 150px;
-	    width:70px;
-	    height:300px;
-	    position: relative;
-	    background: #ddd;
-	    border:1px solid #aaa;
-	    -webkit-border-radius: 12px;
-	       -moz-border-radius: 12px;
-	        -ms-border-radius: 12px;
-	         -o-border-radius: 12px;
-	            border-radius: 12px;
-	
-	    -webkit-box-shadow: 1px 1px 4px #999, 5px 0 20px #999;
-	       -moz-box-shadow: 1px 1px 4px #999, 5px 0 20px #999;
-	        -ms-box-shadow: 1px 1px 4px #999, 5px 0 20px #999;
-	         -o-box-shadow: 1px 1px 4px #999, 5px 0 20px #999;
-	            box-shadow: 1px 1px 4px #999, 5px 0 20px #999;
-	}
-	
-	.thermometer .track {
-	    height:280px;
-	    top:10px;
-	    width:20px;
-	    border: 1px solid #aaa;
-	    position: relative;
-	    margin:0 auto;
-	    background: rgb(255,255,255);
-	    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgb(0,0,0)), color-stop(1%,rgb(255,255,255)));
-	    background: -webkit-linear-gradient(top, rgb(0,0,0) 0%,rgb(255,255,255) 10%);
-	    background:      -o-linear-gradient(top, rgb(0,0,0) 0%,rgb(255,255,255) 10%);
-	    background:     -ms-linear-gradient(top, rgb(0,0,0) 0%,rgb(255,255,255) 10%);
-	    background:    -moz-linear-gradient(top, rgb(0,0,0) 0%,rgb(255,255,255) 10%);
-	    background:   linear-gradient(to bottom, rgb(0,0,0) 0%,rgb(255,255,255) 10%);
-	    background-position: 0 -1px;
-	    background-size: 100% 5%;
-	}
-	
-	.thermometer .progress {
-	    height:0%;
-	    width:100%;
-	    background: rgb(20,100,20);
-	    background: rgba(20,100,20,0.6);
-	    position: absolute;
-	    bottom:0;
-	    left:0;
-	}
-	
-	.thermometer .goal {
-	    position:absolute;
-	    top:0;
-	}
-	
-	.thermometer .amount {
-	    display: inline-block;
-	    padding:0 5px 0 60px;
-	    border-top:1px solid black;
-	    font-family: Trebuchet MS;
-	    font-weight: bold;
-	    color:#333;
-	}
-	
-	.thermometer .progress .amount {
-	    padding:0 60px 0 5px;
-	    position: absolute;
-	    border-top:1px solid #060;
-	    color:#060;
-	    right:0;
-	}
-	
-	
-	
-	.thermometer.horizontal {
-	    margin:100px auto;
-	}
-	
-	.thermometer.horizontal {
-	    width:350px;
-	    height:70px;
-	}
-	
-	.thermometer.horizontal .track {
-	    width:90%;
-	    left:0;
-	    height:20px;
-	    margin:14px auto;
-	
-	    background: -webkit-gradient(linear, left top, right top, color-stop(0%,rgb(0,0,0)), color-stop(1%,rgb(255,255,255)));
-	    background: -webkit-linear-gradient(left, rgb(0,0,0) 0%,rgb(255,255,255) 10%);
-	    background:      -o-linear-gradient(left, rgb(0,0,0) 0%,rgb(255,255,255) 10%);
-	    background:     -ms-linear-gradient(left, rgb(0,0,0) 0%,rgb(255,255,255) 10%);
-	    background:    -moz-linear-gradient(left, rgb(0,0,0) 0%,rgb(255,255,255) 10%);
-	    background:   linear-gradient(to right, rgb(0,0,0) 0%,rgb(255,255,255) 10%);
-	    background-size: 5% 100%;
-	}
-	
-	.thermometer.horizontal .progress {
-	    height:100%;
-	    width:0%;
-	}
-	
-	.thermometer.horizontal .goal {
-	    left:100%;
-	    height:100%;
-	}
-	
-	.thermometer.horizontal .amount {
-	    bottom:0;
-	    position: absolute;
-	    padding:0 5px 50px 5px;
-	    border-top:0;
-	    border-left:1px solid black;
-	
-	}
-	
-	.thermometer.horizontal .progress .amount {
-	    border-left:0;
-	    border-top:0;
-	    border-right:1px solid #060;
-	}
-	</style>
+    <script type="application/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <style type="text/css">
+    #content {
+        width:700px;
+        margin:30px auto;
+    }
+    .thermometer {
+        float: left;
+        margin:0 150px;
+        width:70px;
+        height:400px;
+        position: relative;
+        background: #ddd;
+        border:1px solid #aaa;
+        -webkit-border-radius: 12px;
+           -moz-border-radius: 12px;
+            -ms-border-radius: 12px;
+             -o-border-radius: 12px;
+                border-radius: 12px;
+    
+        -webkit-box-shadow: 1px 1px 4px #999, 5px 0 20px #999;
+           -moz-box-shadow: 1px 1px 4px #999, 5px 0 20px #999;
+            -ms-box-shadow: 1px 1px 4px #999, 5px 0 20px #999;
+             -o-box-shadow: 1px 1px 4px #999, 5px 0 20px #999;
+                box-shadow: 1px 1px 4px #999, 5px 0 20px #999;
+    }
+    
+    .thermometer .track {
+        height:380px;
+        top:10px;
+        width:20px;
+        border: 1px solid #aaa;
+        position: relative;
+        margin:0 auto;
+        background: rgb(255,255,255);
+        background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgb(0,0,0)), color-stop(1%,rgb(255,255,255)));
+        background: -webkit-linear-gradient(top, rgb(0,0,0) 0%,rgb(255,255,255) 10%);
+        background:      -o-linear-gradient(top, rgb(0,0,0) 0%,rgb(255,255,255) 10%);
+        background:     -ms-linear-gradient(top, rgb(0,0,0) 0%,rgb(255,255,255) 10%);
+        background:    -moz-linear-gradient(top, rgb(0,0,0) 0%,rgb(255,255,255) 10%);
+        background:   linear-gradient(to bottom, rgb(0,0,0) 0%,rgb(255,255,255) 10%);
+        background-position: 0 -1px;
+        background-size: 100% 5%;
+    }
+    
+    .thermometer .progress {
+        height:0%;
+        width:100%;
+        background: rgb(20,100,20);
+        background: rgba(20,100,20,0.6);
+        position: absolute;
+        bottom:0;
+        left:0;
+    }
+    
+    .thermometer .goal {
+        position:absolute;
+        top:0;
+    }
+
+    .thermometer .amount {
+        display: inline-block;
+        padding:0 5px 0 60px;
+        border-top:1px solid black;
+        font-family: Trebuchet MS;
+        font-weight: bold;
+        color:#333;
+    }
+
+    .thermometer .loan_amount {
+        position: absolute;
+        width: 300px;
+        border-top: 1px dotted red;
+        padding-left: 60px;
+        font-family: Trebuchet MS;
+        font-variant: small-caps;
+        font-size: 12px;
+    }
+
+    .thermometer .loan_amount .payoff {
+        color: gray;
+    }
+    
+    .thermometer .progress .amount {
+        padding:0 60px 0 5px;
+        position: absolute;
+        border-top:1px solid #060;
+        color:#060;
+        right:0;
+    }
+    
+    
+    
+    .thermometer.horizontal {
+        margin:100px auto;
+    }
+    
+    .thermometer.horizontal {
+        width:350px;
+        height:70px;
+    }
+    
+    .thermometer.horizontal .track {
+        width:90%;
+        left:0;
+        height:20px;
+        margin:14px auto;
+    
+        background: -webkit-gradient(linear, left top, right top, color-stop(0%,rgb(0,0,0)), color-stop(1%,rgb(255,255,255)));
+        background: -webkit-linear-gradient(left, rgb(0,0,0) 0%,rgb(255,255,255) 10%);
+        background:      -o-linear-gradient(left, rgb(0,0,0) 0%,rgb(255,255,255) 10%);
+        background:     -ms-linear-gradient(left, rgb(0,0,0) 0%,rgb(255,255,255) 10%);
+        background:    -moz-linear-gradient(left, rgb(0,0,0) 0%,rgb(255,255,255) 10%);
+        background:   linear-gradient(to right, rgb(0,0,0) 0%,rgb(255,255,255) 10%);
+        background-size: 5% 100%;
+    }
+    
+    .thermometer.horizontal .progress {
+        height:100%;
+        width:0%;
+    }
+    
+    .thermometer.horizontal .goal {
+        left:100%;
+        height:100%;
+    }
+    
+    .thermometer.horizontal .amount {
+        bottom:0;
+        position: absolute;
+        padding:0 5px 50px 5px;
+        border-top:0;
+        border-left:1px solid black;
+    
+    }
+    
+    .thermometer.horizontal .progress .amount {
+        border-left:0;
+        border-top:0;
+        border-right:1px solid #060;
+    }
+    </style>
 </head>
 <body>
 <div id="content">
@@ -139,7 +153,7 @@
 
         <div class="track">
             <div class="goal">
-                <div class="amount"> 51484 </div>
+                <div class="amount" style="display: none"> 51484 </div>
             </div>
             <div class="progress">
                 <div class="amount"> 0 </div>
@@ -216,32 +230,93 @@ function thermometer(id, goalAmount, progressAmount, animate) {
     }
 }
 
+function append_debt_markers (debt_markers, $thermometer)
+{
+    var className = '',
+        css_height_px = '',
+        index,
+        marker_data,
+        marker_html = '',
+        $marker = $('<div class="loan_amount"></div>'),
+        $new_marker = null,
+        payoff = '',
+        running_total = '',
+        $progress = $thermometer.find('div.progress'),
+        thermo_height = parseInt($thermometer.find('div.track').css('height'));
+
+    for (index in debt_markers)
+    {
+        marker_data = debt_markers[index];
+
+        className = $marker.attr('class')+' '+index;
+        css_height_px = thermo_height-(thermo_height*marker_data['percent_of_total']);
+        payoff = formatCurrency(marker_data['payoff']);
+        running_total = 
+
+        marker_html = '<strong>$'+formatCurrency(marker_data['running_total'])
+                    + '</strong>&nbsp;&nbsp;&nbsp;'+marker_data['name']
+                    + ' <span class="payoff">($'+payoff+')</span>';
+        $new_marker = $marker.clone()
+                             .attr('class', className)
+                             .css('top', css_height_px+'px')
+                             .html(marker_html);
+
+        $thermometer.find('div.track').append($new_marker);
+    }
+}
+
 function add_up_debt (debt)
 {
     var sum = 0;
 
     for (loan in debt)
     {
-	sum += debt[loan];
+        sum += debt[loan];
     }
 
     return sum;
-}
+};
+
+function calculate_debt_markers (debt, total_debt)
+{
+    var debt_markers = [],
+        payoff = null,
+        running_total = 0;
+
+    for (loan_name in debt)
+    {
+        payoff = debt[loan_name];
+        running_total += payoff;
+        percent_of_total = Math.round(running_total / total_debt * 100) / 100;
+
+        debt_markers.push({'name': loan_name,
+                           'payoff': payoff,
+                           'running_total': running_total,
+                           'percent_of_total': percent_of_total});
+    }
+
+    return debt_markers;
+};
 
 $(document).ready(function(){
 
-    var debt = {};
+    var debt = {},
+        debt_markers = [],
+        $thermometer = $('#thermo1');
 
     $.getJSON('/debt.json', function (data)
     {
         debt = data;
 
-        var original_debt = add_up_debt(debt['original']),
-            paid_off = original_debt - add_up_debt(debt['current']);
+        var total_debt = add_up_debt(debt['original']),
+            paid_off = total_debt - add_up_debt(debt['current']);
+
+        debt_markers = calculate_debt_markers(debt['original'], total_debt);
 
         //call without the parameters to have it read from the DOM
-        thermometer("thermo1", original_debt, paid_off);
-	$('#thermo1').css('visibility', 'visible');
+        thermometer("thermo1", total_debt, paid_off);
+        append_debt_markers(debt_markers, $thermometer);
+        $thermometer.css('visibility', 'visible');
     });
 
 });
