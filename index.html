@@ -230,8 +230,8 @@ function thermometer(id, goalAmount, progressAmount, animate) {
     percentageAmount =  Math.min( Math.round(progressAmount / goalAmount * 1000) / 10, 100); //make sure we have 1 decimal point
 
     //let's format the numbers and put them back in the DOM
-    $goal.find(".amount").text( "$" + formatCurrency( goalAmount ) );
-    $progress.find(".amount").text( "$" + formatCurrency( progressAmount ) );
+    //$goal.find(".amount").text( "$" + formatCurrency( goalAmount ) );
+    $progress.find(".amount").text( Math.round((progressAmount / goalAmount)*100).toString() + '%' );
 
 
     //let's set the progress indicator
@@ -271,11 +271,9 @@ function append_debt_markers (debt_markers, $thermometer, colors)
         className = $marker.attr('class')+' '+index;
         css_top_px = Math.round(thermo_height-(thermo_height*marker_data['percent_of_total']));
         payoff = formatCurrency(marker_data['payoff']);
-        running_total =
 
-        marker_html = '<strong>$'+formatCurrency(marker_data['running_total'])
-                    + '</strong>&nbsp;&nbsp;&nbsp;'+marker_data['name']
-                    + ' <span class="payoff">($'+payoff+')</span>';
+        marker_html = '<strong>'+Math.round(marker_data['percent_of_total']*100).toString()
+                    + '%</strong>&nbsp;&nbsp;&nbsp;'+marker_data['name'];
         $new_marker = $marker.clone()
                              .attr('class', className)
                              .css({'top': css_top_px+'px',
