@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.4.2/pure-min.css">
     <script type="application/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
     <style type="text/css">
     #content {
@@ -72,7 +73,7 @@
 
     .thermometer .loan_amount {
         position: absolute;
-        width: 300px;
+        width: 175px;
         border-top: 1px dotted red;
         padding-left: 60px;
         font-family: Trebuchet MS;
@@ -142,12 +143,30 @@
         border-top:0;
         border-right:1px solid #060;
     }
+
+    #payoff_windows {
+        float: right;
+        width: 275px;
+    }
     </style>
 </head>
 <body>
 <div id="content">
 
     <h1>Zicari Family Debt Freedom Thermometer</h1>
+
+    <div id="payoff_windows">
+        <table class="pure-table pure-table-striped">
+            <thead>
+                <tr>
+                    <th>Monthly Payments</th>
+                    <th>Time to Freedom!</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
 
     <div id="thermo1" class="thermometer" style="visibility: hidden">
 
@@ -162,7 +181,7 @@
 
     </div>
 
-<p style="clear: both; padding-top: 20px">Thermometer borrowed from <a href="http://jsfiddle.net/GeekyJohn/UpnKF/" target="_blank">http://jsfiddle.net/GeekyJohn/UpnKF/</a></p>
+    <p style="clear: both; padding-top: 20px">Thermometer borrowed from <a href="http://jsfiddle.net/GeekyJohn/UpnKF/" target="_blank">http://jsfiddle.net/GeekyJohn/UpnKF/</a></p>
 
 </div>
 
@@ -267,6 +286,61 @@ function append_debt_markers (debt_markers, $thermometer, colors)
     }
 }
 
+/**
+ * Calculates the number of months it would take to pay off all of the debt
+ * based on standard repayment amounts ranging from $2,500 to $5,000 a month.
+ */
+function calculate_payoff_windows (total_debt, monthly_payments)
+{
+    var monthly_payments = monthly_payments || [2000, 2500, 3000, 3500, 4000, 4500, 5000],
+        payoff_windows = [],
+        payment_amount = 0;
+
+    for (index in monthly_payments)
+    {
+        payment_amount = monthly_payments[index];
+        payoff_windows[index] = Math.ceil(total_debt / payment_amount);
+    }
+
+    return {'payoff_windows': payoff_windows, 'monthly_payments': monthly_payments};
+}
+
+/**
+ * Displays payoff windows in the DOM that illustrate how many months it would
+ * take to pay off all of the debt given standard repayment amounts.
+ */
+function append_payment_windows_to_dom (payment_window_data)
+{
+    var payment_window,
+        monthly_payment,
+        $tbody = $('#payoff_windows table tbody'),
+        cells = [],
+        $cell,
+        $row;
+
+    for (var index in payment_window_data['payoff_windows'])
+    {
+        payment_window = payment_window_data['payoff_windows'][index];
+        monthly_payment = payment_window_data['monthly_payments'][index];
+        $row = $('<tr></tr>');
+
+        cells[0] = $('<td>$'+ formatCurrency(monthly_payment) +'</td>');
+        cells[1] = $('<td>'+ payment_window +'</td>');
+
+        for (var cell_index in cells)
+        {
+            $cell = cells[cell_index];
+
+            $row.append($cell);
+        }
+
+        $tbody.append($row);
+
+        $row = null;
+        cells = [];
+    }
+};
+
 function add_up_debt (debt)
 {
     var sum = 0;
@@ -314,7 +388,8 @@ $(document).ready(function(){
         debt = data;
 
         var total_debt = add_up_debt(debt['original']),
-            paid_off = total_debt - add_up_debt(debt['current']);
+            remaining_debt = add_up_debt(debt['current']),
+            paid_off = total_debt - remaining_debt;
 
         debt_markers = calculate_debt_markers(debt['original'], total_debt);
 
@@ -322,6 +397,8 @@ $(document).ready(function(){
         thermometer("thermo1", total_debt, paid_off);
         append_debt_markers(debt_markers, $thermometer, colors);
         $thermometer.css('visibility', 'visible');
+
+        append_payment_windows_to_dom(calculate_payoff_windows(remaining_debt));
     });
 
 });
