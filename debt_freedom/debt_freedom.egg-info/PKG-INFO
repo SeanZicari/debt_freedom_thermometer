@@ -1,0 +1,35 @@
+Metadata-Version: 1.1
+Name: debt-freedom
+Version: 0.0
+Summary: debt_freedom
+Home-page: http://debtfreedom.chonkeys.com
+Author: Sean Zicari
+Author-email: sean.zicari@gmail.com
+License: UNKNOWN
+Description: debt_freedom README
+        ==================
+        
+        Getting Started
+        ---------------
+        
+        - cd <directory containing this file>
+        
+        - $VENV/bin/python setup.py develop
+        
+        - $VENV/bin/initialize_debt_freedom_db development.ini
+        
+        - $VENV/bin/pserve development.ini
+        
+        
+        
+        0.0
+        ---
+        
+        -  Initial version
+        
+Keywords: web wsgi bfg pylons pyramid
+Platform: UNKNOWN
+Classifier: Programming Language :: Python
+Classifier: Framework :: Pyramid
+Classifier: Topic :: Internet :: WWW/HTTP
+Classifier: Topic :: Internet :: WWW/HTTP :: WSGI :: Application

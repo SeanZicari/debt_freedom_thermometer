@@ -1,0 +1,5 @@
+      [paste.app_factory]
+      main = debt_freedom:main
+      [console_scripts]
+      initialize_debt_freedom_db = debt_freedom.scripts.initializedb:main
+      
