@@ -326,7 +326,7 @@ function append_payment_windows_to_dom (payment_window_data)
         $row = $('<tr></tr>');
 
         cells[0] = $('<td>$'+ formatCurrency(monthly_payment) +'</td>');
-        cells[1] = $('<td>'+ moment().add('months', payment_window).format('MMM YYYY') +' ('+ payment_window +'m)</td>');
+        cells[1] = $('<td>'+ moment().add('months', payment_window).format('MMM YYYY') +'</td>');
 
         for (var cell_index in cells)
         {
