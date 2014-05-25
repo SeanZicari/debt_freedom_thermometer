@@ -159,7 +159,7 @@
         <table class="pure-table pure-table-striped">
             <thead>
                 <tr>
-                    <th>Monthly Payments</th>
+                    <th>Monthly Payment Size</th>
                     <th>Time to Freedom!</th>
                 </tr>
             </thead>
@@ -185,7 +185,8 @@
 
 </div>
 
-<script type="application/javascript">
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.6.0/moment.min.js"></script>
+<script type="text/javascript">
 //<!--
 //originally from http://stackoverflow.com/questions/149055/how-can-i-format-numbers-as-money-in-javascript
 function formatCurrency(n, c, d, t) {
@@ -292,7 +293,7 @@ function append_debt_markers (debt_markers, $thermometer, colors)
  */
 function calculate_payoff_windows (total_debt, monthly_payments)
 {
-    var monthly_payments = monthly_payments || [2000, 2500, 3000, 3500, 4000, 4500, 5000],
+    var monthly_payments = monthly_payments || [1000, 1500, 2000, 2500, 3000, 3500, 4000],
         payoff_windows = [],
         payment_amount = 0;
 
@@ -325,7 +326,7 @@ function append_payment_windows_to_dom (payment_window_data)
         $row = $('<tr></tr>');
 
         cells[0] = $('<td>$'+ formatCurrency(monthly_payment) +'</td>');
-        cells[1] = $('<td>'+ payment_window +'</td>');
+        cells[1] = $('<td>'+ moment().add('months', payment_window).format('MMM YYYY') +' ('+ payment_window +'m)</td>');
 
         for (var cell_index in cells)
         {
