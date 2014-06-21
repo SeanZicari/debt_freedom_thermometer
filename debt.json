@@ -4,15 +4,15 @@
               "Tax Liability": 4413.00,
               "Discover (22)": 1212.49,
               "Capital One (3067)": 1696.60,
-              "Capital One (5647)": 1916.44,
-              "Capital One (4717)": 1910.34,
-              "Discover (24)": 1988.08,
-              "Discover (23)": 2143.40,
-              "AES (Unsub)": 2270.49,
-              "Discover (20)": 2876.00,
-              "Discover (21)": 3224.89,
+              "Capital One (5647)": 1891.44,
+              "Discover (24)": 1899.72,
+              "Capital One (4717)": 1967.58,
+              "Discover (23)": 2048.14,
+              "AES (Unsub)": 2270.08,
+              "Discover (20)": 2747.14,
+              "Discover (21)": 3081.33,
               "Family Loan": 4301.95,
-              "AES (Sub)": 17115.89
+              "AES (Sub)": 17112.88
              },
 
  "current": {
@@ -20,15 +20,15 @@
              "Hospital Bill": 0,
              "Tax Liability": 0,
              "Discover (22)": 0,
-             "Capital One (3067)": 1323.78,
-             "Capital One (5647)": 1916.44,
-             "Capital One (4717)": 1910.34,
-             "Discover (24)": 1988.08,
-             "Discover (23)": 2143.40,
-             "AES (Unsub)": 2270.49,
-             "Discover (20)": 2876.00,
-             "Discover (21)": 3224.89,
+             "Capital One (3067)": 0,
+             "Capital One (5647)": 1891.44,
+             "Discover (24)": 1899.72,
+             "Capital One (4717)": 1967.58,
+             "Discover (23)": 2048.14,
+             "AES (Unsub)": 2270.08,
+             "Discover (20)": 2747.14,
+             "Discover (21)": 3081.33,
              "Family Loan": 4301.95,
-             "AES (Sub)": 17115.89
+             "AES (Sub)": 17112.88
             }
 }
