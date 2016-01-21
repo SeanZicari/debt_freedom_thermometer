@@ -363,15 +363,32 @@ function calculate_debt_markers (debt, total_debt)
     for (loan_name in debt)
     {
         payoff = debt[loan_name];
-        running_total += payoff;
         percent_of_total = Math.round(running_total / total_debt * 100) / 100;
 
         debt_markers.push({'name': loan_name,
                            'payoff': payoff,
-                           'running_total': running_total,
                            'percent_of_total': percent_of_total});
     }
 
+    debt_markers.sort(function (a, b) {
+        if (a['payoff'] < b['payoff']) {
+            return -1;
+        }
+        if (a['payoff'] > b['payoff']) {
+            return 1;
+        }
+        return 0;
+    });
+
+    debt_markers.forEach(function (debt, index) {
+        running_total += debt['payoff'];
+        percent_of_total = Math.round(running_total / total_debt * 100) / 100;
+        debt_markers[index]['running_total'] = running_total;
+        debt_markers[index]['percent_of_total'] = percent_of_total;
+    });
+
+    console.debug(debt_markers);
+    
     return debt_markers;
 };
 
