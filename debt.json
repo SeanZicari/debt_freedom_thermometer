@@ -1,12 +1,17 @@
 {"original": {
-              "AES (Sub)": 17108.32,
-              "CarMax Auto Finance": 20277.45,
-              "Capital One": 9901.99
+              "AES (Sub)": 12213.11,
+              "CarMax Auto Finance": 19682.31,
+              "Capital One": 9777.29,
+              "Medical": 1300,
+              "Full Service Chimney": 2280.00
              },
 
  "current": {
-             "AES (Sub)": 13355.51,
-              "CarMax Auto Finance": 20277.45,
-              "Capital One": 9901.99
+             "AES (Sub)": 12213.11,
+              "CarMax Auto Finance": 19682.31,
+              "Capital One": 9777.29,
+              "Medical": 1300,
+              "Full Service Chimney": 0
+
             }
 }
