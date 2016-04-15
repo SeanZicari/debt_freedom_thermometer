@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.4.2/pure-min.css">
     <script type="application/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
@@ -354,7 +354,7 @@ function add_up_debt (debt)
     return sum;
 };
 
-function calculate_debt_markers (debt, total_debt)
+function calculate_debt_markers (debt, total_debt, weights)
 {
     var debt_markers = [],
         payoff = null,
@@ -367,17 +367,26 @@ function calculate_debt_markers (debt, total_debt)
 
         debt_markers.push({'name': loan_name,
                            'payoff': payoff,
+                           'weight': weights[loan_name],
                            'percent_of_total': percent_of_total});
     }
 
     debt_markers.sort(function (a, b) {
-        if (a['payoff'] < b['payoff']) {
+        if (a['weight'] < b['weight']) {
             return -1;
         }
-        if (a['payoff'] > b['payoff']) {
+        if (a['weight'] > b['weight']) {
             return 1;
         }
-        return 0;
+        else {
+            if (a['payoff'] < b['payoff']) {
+                return -1;
+            }
+            if (a['payoff'] > b['payoff']) {
+                return 1;
+            }
+            return 0;
+        }
     });
 
     debt_markers.forEach(function (debt, index) {
@@ -387,12 +396,21 @@ function calculate_debt_markers (debt, total_debt)
         debt_markers[index]['percent_of_total'] = percent_of_total;
     });
 
-    console.debug(debt_markers);
-    
     return debt_markers;
 };
 
-$(document).ready(function(){
+function weightedDebt (debt) {
+    var weights = {},
+        original = debt['original'],
+        remaining = debt['current'];
+
+    for (debt in original) {
+        weights[debt] = remaining[debt] - original[debt];
+    }
+    return weights;
+};
+
+$(document).ready(function () {
 
     var colors = ['blue', 'brown', 'goldenrod', 'cadetblue', 'forestgreen',
                   'crimson', 'darkblue', 'deeppink', 'darkgreen', 'darkmagenta',
@@ -401,15 +419,14 @@ $(document).ready(function(){
         debt_markers = [],
         $thermometer = $('#thermo1');
 
-    $.getJSON('/debt.json', function (data)
-    {
+    $.getJSON('/debt.json', function (data) {
         debt = data;
 
         var total_debt = add_up_debt(debt['original']),
             remaining_debt = add_up_debt(debt['current']),
             paid_off = total_debt - remaining_debt;
 
-        debt_markers = calculate_debt_markers(debt['original'], total_debt);
+        debt_markers = calculate_debt_markers(debt['original'], total_debt, weightedDebt(debt));
 
         //call without the parameters to have it read from the DOM
         thermometer("thermo1", total_debt, paid_off);
