@@ -1,14 +1,14 @@
 {"original": {
-              "AES (Sub)": 12213.11,
-              "CarMax Auto Finance": 19682.31,
-              "SunSmart": 17000.00,
+              "AES (Sub)": 10965.18,
+              "CarMax Auto Finance": 15727.59,
+              "SunSmart": 16604.43,
               "Capital One": 9812.29
              },
 
  "current": {
-             "AES (Sub)": 12213.11,
-              "CarMax Auto Finance": 19682.31,
-              "SunSmart": 17000.00,
-              "Capital One": 9359.25
+             "AES (Sub)": 10965.18,
+             "CarMax Auto Finance": 15727.59,
+             "SunSmart": 16604.43,
+             "Capital One": 8790.59
             }
 }
